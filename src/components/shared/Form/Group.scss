@@ -1,0 +1,86 @@
+@import "../../../assets/scss/variables";
+/* region Group */
+.form-group {
+    display: block;
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 16px;
+}
+.form-group__label {
+    display: block;
+    transition: all 0.1s ease-out;
+    color: $color-dark-gray;
+    margin-bottom: 4px;
+}
+.form-group__input {
+    position: relative;
+}
+.form-group__hint,
+.form-group__error {
+    display: block;
+    font-size: 15px;
+    line-height: 20px;
+    margin-top: 6px;
+    color: $color-medium-gray;
+}
+.form-group__error {
+    display: none;
+}
+.form-group_focus {
+    .form-input__input {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 2px $color-primary-24p;
+        outline: 0;
+    }
+}
+.form-group_error {
+    .form-group__label {
+        color: $color-hazard;
+    }
+    .form-input__input {
+        border-color: $color-hazard;
+        box-shadow: 0 0 0 2px $color-hazard-24p;
+        outline: 0;
+    }
+    .form-group__hint {
+        display: none;
+    }
+    .form-group__error {
+        display: block;
+        color: $color-hazard;
+    }
+}
+/* endregion */
+/* region Inputs */
+.form-input__input {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 8px;
+    font-size: 18px;
+    font-family: inherit;
+    border: solid 1px $color-gray;
+    border-radius: 3px;
+    background: transparent none;
+    margin: 0;
+    color: black;
+}
+.form-input__input_textarea {
+    min-height: 138px;
+    line-height: 24px;
+}
+.form-input__icon {
+    color: $color-gray;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    background-color: white;
+    padding-left: 8px;
+}
+.form-input__icon:hover {
+    color: $color-primary;
+}
+/* endregion */
