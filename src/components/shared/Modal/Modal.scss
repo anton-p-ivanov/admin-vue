@@ -1,0 +1,80 @@
+@import "../../../assets/scss/variables";
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    display: none;
+    outline: 0;
+    background-color: $color-black-24p;
+}
+.modal.visible {
+    display: flex;
+    align-items: center;
+}
+.modal__container {
+    width: 20%;
+    min-width: 600px;
+    max-width: 900px;
+    max-height: 100%;
+    color: $color-dark-gray;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: $shadow-large;
+}
+.modal_hazard .modal__container {
+    min-width: 400px;
+}
+.modal__body {
+    padding: $modal-padding;
+    background-color: white;
+}
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 $modal-padding;
+    height: 64px;
+    font-size: 20px;
+    line-height: 1em;
+    font-weight: 500;
+    background: $color-primary none;
+    color: white;
+    text-transform: uppercase;
+    border-radius: $border-radius $border-radius 0 0;
+}
+.modal_warning .modal__header {
+    background-color: $color-warning;
+}
+.modal_success .modal__header {
+    background-color: $color-success;
+}
+.modal_hazard .modal__header {
+    background-color: $color-hazard;
+}
+.modal__footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 24px;
+    height: 76px;
+    border-top: solid 1px $color-light-gray;
+    background: $color-lightest-gray none;
+    border-radius: 0 0 $border-radius $border-radius;
+}
+.modal__dismiss {
+    position: relative;
+    padding: $modal-padding / 2;
+    color: inherit;
+    right: -12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal__dismiss:hover {
+    background-color: $color-white-12p;
+}
