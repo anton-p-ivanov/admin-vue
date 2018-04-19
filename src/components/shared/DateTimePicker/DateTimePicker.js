@@ -56,6 +56,7 @@ export default {
         show () {
             this.$_currentDate = this.date ? new Date(this.date) : new Date();
             this.$_selectedDate = this.$_currentDate;
+            this.$_initialType = this.type;
 
             this.renderPicker();
 
@@ -350,7 +351,7 @@ export default {
         $_clickHandler_Close () {
             let value = this.$_date.hours + ':' + this.$_date.minutes;
 
-            if (this.type !== DATETIME_PICKER_TIME) {
+            if (this.$_initialType !== DATETIME_PICKER_TIME) {
                 value = this.$_date.date + ' ' + value;
             }
 
