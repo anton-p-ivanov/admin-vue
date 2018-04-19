@@ -1,0 +1,207 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+.dt-picker {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    display: none;
+    outline: 0;
+    background-color: $color-black-24p;
+}
+.dt-picker.visible {
+    display: flex;
+    align-items: center;
+}
+.dt-picker__container {
+    color: $color-dark-gray;
+    z-index: 1100;
+    box-shadow: $shadow-large;
+    padding: 0;
+    margin: 0 auto;
+}
+.dt-picker__header {
+    background-color: $color-primary;
+    border-radius: $border-radius $border-radius 0 0;
+    color: white;
+    height: 64px;
+    font-size: 20px;
+    line-height: 40px;
+    padding: 12px 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+}
+.dt-picker__body {
+    padding: 24px;
+    background-color: white;
+}
+.dt-calendar {
+    font-size: 14px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.dt-calendar > thead > tr > th,
+.dt-calendar > tbody > tr > td {
+    width: 40px;
+    height: 40px;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+}
+.dt-calendar > thead > tr > th,
+.dt-calendar .disabled {
+    color: $color-gray;
+}
+.dt-calendar .today > a {
+    color: $color-primary;
+    font-weight: 500;
+}
+.dt-calendar > tbody > tr > td > a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: $color-dark-gray;
+}
+.dt-calendar > tbody > tr > td > a.selected,
+.dt-calendar > tbody > tr > td > a:hover {
+    background-color: $color-primary;
+    color: white;
+}
+.dt-picker__footer {
+    padding: 0 24px 24px 24px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 0 0 $border-radius $border-radius;
+}
+.dt-picker__footer .btn {
+    color: $color-dark-gray;
+}
+.dt-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dt-nav__title {
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+}
+.dt-nav__btn {
+    display: block;
+    background: transparent none;
+    border: none;
+    padding: 8px;
+    margin: 0;
+    cursor: pointer;
+}
+.dt-nav__btn:hover {
+    background-color: $color-black-06p;
+}
+.dt-nav__btn > .mdi,
+.dt-nav__btn > .mdi::before {
+    display: block;
+    line-height: 1em;
+}
+.dt-clock {
+    padding: 0;
+    width: 280px;
+    height: 280px;
+    position: relative;
+}
+.dt-clock__hours {
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 20px;
+}
+.dt-clock__hours li {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+.dt-clock__hours {
+    @include distribute-on-circle(12, 240px, 40px);
+}
+.dt-clock__hours li > a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    text-decoration: none;
+    color: $color-dark-gray;
+}
+.dt-clock__minutes li > a:hover,
+.dt-clock__hours li > a:hover,
+.dt-clock li > a.selected {
+    background-color: $color-primary;
+    color: white;
+}
+.dt-clock__minutes {
+    display: block;
+    position: absolute;
+    padding: 20px;
+    margin: 40px;
+    background-color: $color-black-06p;
+}
+.dt-clock__minutes {
+    @include distribute-on-circle(12, 160px, 30px);
+}
+.dt-clock__minutes li {
+    font-size: 14px;
+}
+.dt-clock__minutes.hidden li {
+    display: none;
+}
+.dt-clock__minutes li > a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 15px;
+    text-decoration: none;
+    color: $color-dark-gray;
+}
+.dt-clock__switch {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 120px;
+
+    li {
+        display: inline-block;
+        a {
+            display: inline-block;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: $color-dark-gray;
+            padding: 8px;
+        }
+        a.selected,
+        a:hover {
+            color: $color-primary;
+            background-color: transparent;
+        }
+    }
+}
+.dt-picker_no-scroll {
+    overflow: hidden;
+}
