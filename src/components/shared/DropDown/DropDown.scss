@@ -1,0 +1,64 @@
+@import '../../../assets/scss/variables';
+.dropdown {
+    list-style: none;
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    min-width: 250px;
+    z-index: 1000;
+    margin: 0;
+    padding: 8px 0;
+    background-color: white;
+    border-radius: $border-radius;
+    box-shadow: $shadow-small;
+}
+.dropdown_right {
+    left: auto;
+    right: 0;
+}
+.dropdown_top {
+    top: auto;
+    bottom: 0;
+}
+.dropdown__item {
+    position: relative;
+    display: block;
+    color: $color-dark-gray;
+}
+.dropdown__link,
+.dropdown__item > span {
+    display: block;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 32px;
+    padding: 0 24px;
+    cursor: pointer;
+    color: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dropdown__link:hover {
+    background-color: $color-primary;
+    color: white;
+}
+.dropdown__link_disabled,
+.dropdown__link_disabled:hover {
+    background-color: transparent;
+    color: $color-gray;
+}
+.dropdown__link_active {
+    background-color: $color-light-gray;
+}
+.dropdown__divider {
+    position: relative;
+    display: block;
+    margin: 9px 0;
+    padding: 0;
+    height: 1px;
+    overflow: hidden;
+    background-color: $color-light-gray;
+}
+.dropdown.visible {
+    display: block;
+}
