@@ -1,0 +1,48 @@
+@import "../../../assets/scss/variables";
+.tabs-nav {
+    display: flex;
+    list-style: none;
+    height: 40px;
+    border-bottom: solid 1px $color-gray;
+}
+.tabs-nav__item {
+    position: relative;
+}
+.tabs-nav__link,
+.tabs-nav__link:hover,
+.tabs-nav__link:visited,
+.tabs-nav__link:active,
+.tabs-nav__link:focus {
+    position: relative;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    background: transparent none;
+    text-decoration: none;
+    text-align: center;
+    color: inherit;
+    cursor: pointer;
+}
+.tabs-nav__link.active {
+    color: $color-dark-gray;
+    border-color: $color-gray;
+    border-bottom-color: white;
+    background-color: white;
+}
+.tabs-nav__link.disabled {
+    color: $color-white-48p;
+}
+.tabs-content {
+    position: relative;
+    padding-top: 30px;
+}
+.tabs-pane {
+    display: none;
+}
+.tabs-pane.visible {
+    display: block;
+}
