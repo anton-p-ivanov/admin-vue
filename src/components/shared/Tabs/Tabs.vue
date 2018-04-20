@@ -2,13 +2,13 @@
     <div class="tabs">
         <ul class="tabs-nav">
             <li v-for="(item, index) in items" :key="tabID(index)" class="tabs-nav__item">
-                <a class="tabs-nav__link" v-bind="item.options">
+                <a class="tabs-nav__link" :class="{disabled: item.disabled, active: item.active}" v-bind="item.options">
                     {{ item.label }}
                 </a>
             </li>
         </ul>
         <div class="tabs-content">
-            <div v-for="(item, index) in items" :key="index" :id="tabID(index)" class="tabs-pane">
+            <div v-for="(item, index) in items" :key="index" :id="tabID(index)" class="tabs-pane" :class="{visible: item.active}">
                 <template v-if="item.component">
                     <component :is="item.component"></component>
                 </template>

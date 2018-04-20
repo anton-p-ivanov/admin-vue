@@ -17,17 +17,9 @@ export default {
             return this.items[index].hasOwnProperty('id') ? this.items[index].id : 'tab-' + index;
         },
 
-        toggleTab (index) {
-            index = index || 0;
-            this.$el.querySelectorAll('[data-toggle="tab"]')[index].click();
-        },
-
         init () {
             // Set handler to listen tabs click
             document.addEventListener('click', this.__initHandler);
-
-            // Toggle first tab
-            this.toggleTab();
         },
 
         show () {
