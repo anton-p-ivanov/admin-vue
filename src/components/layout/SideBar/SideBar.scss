@@ -1,0 +1,30 @@
+@import "../../../assets/scss/variables";
+.sidebar {
+    position: fixed;
+    width: $sidebar-initial-width;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    transition: width 0.3s ease-out 0s;
+    background-color: $color-dark-gray;
+    overflow: hidden;
+    padding: 64px 0 24px 0;
+}
+.sidebar.visible {
+    width: $sidebar-full-width;
+}
+.sidebar ~ .content {
+    margin-left: $sidebar-initial-width;
+}
+.sidebar.visible ~ .content {
+    margin-left: $sidebar-full-width;
+}
+@media only screen and (min-width: 1200px) {
+    .sidebar {
+        width: $sidebar-full-width;
+    }
+    .sidebar ~ .content {
+        margin-left: $sidebar-full-width;
+    }
+}

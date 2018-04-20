@@ -1,0 +1,65 @@
+@import "../../../assets/scss/variables";
+.menu,
+.menu_group,
+.menu__item,
+.menu__link,
+.menu__divider {
+    display: block;
+}
+.menu {
+    overflow: hidden;
+}
+.menu__link {
+    color: $color-white-48p;
+    text-decoration: none;
+    margin: 8px;
+    padding: 12px;
+    &:hover,
+    &.active {
+        color: white;
+    }
+    .mdi {
+        display: block;
+    }
+}
+.menu_group {
+    position: fixed;
+    width: 0;
+    height: 100%;
+    background-color: $color-lightest-gray;
+    top: 64px;
+    left: 64px;
+    transition: width 0.3s ease-out 0s;
+    &.visible {
+        width: 236px;
+    }
+    .menu__link {
+        color: $color-medium-gray;
+        margin: 0;
+        padding: 6px 24px;
+        &:hover {
+            color: white;
+            background-color: $color-primary;
+        }
+        &.disabled {
+            background-color: transparent;
+            color: $color-black-24p;
+        }
+    }
+    .menu__item_title {
+        padding: 0 24px;
+        line-height: 64px;
+        height: 64px;
+        margin-bottom: 12px;
+        font-weight: 500;
+        border-bottom: solid 1px $color-light-gray;
+        background-color: $color-light-gray;
+    }
+    .menu__divider {
+        height: 1px;
+        line-height: 1px;
+        font-size: 1px;
+        margin: 12px 0;
+        background-color: $color-light-gray;
+    }
+}

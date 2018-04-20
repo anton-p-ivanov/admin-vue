@@ -1,5 +1,6 @@
 $base-font-size: 18px;
 $base-line-height: 24px;
+
 $color-lightest-gray: #f0f0f0;
 $color-light-gray: #e0e0e0;
 $color-gray: #9f9f9f;
@@ -11,15 +12,26 @@ $color-warning: #f7941e;
 $color-success: #00a651;
 $color-hazard: rgb(201, 36, 52);
 $color-hazard-24p: rgba(201, 36, 52, .24);
+
 $color-white-06p: rgba(255, 255, 255, .06);
 $color-white-12p: rgba(255, 255, 255, .12);
 $color-white-24p: rgba(255, 255, 255, .24);
 $color-white-48p: rgba(255, 255, 255, .48);
+$color-white-72p: rgba(255, 255, 255, .72);
+
 $color-black-06p: rgba(0, 0, 0, .06);
 $color-black-12p: rgba(0, 0, 0, .12);
 $color-black-24p: rgba(0, 0, 0, .24);
+
 $border-radius: 3px;
+
 $shadow-small: 0 2px 2px $color-black-12p, 0 1px 3px $color-black-24p;
 $shadow-large: 0 9px 46px $color-black-12p, 0 11px 15px $color-black-24p;
-$sidebar-width: 400px;
+
+$sidebar-initial-width: 64px;
+$sidebar-full-width: 300px;
+
 $modal-padding: 24px;
+
+$color-background: white;
+$color-font: $color-dark-gray;
