@@ -1,0 +1,46 @@
+@import "../../../assets/scss/variables";
+.alert {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    margin: 0 0 24px;
+    position: relative;
+    line-height: 24px;
+}
+.alert_success {
+    background-color: $color-success;
+    color: white;
+}
+.alert_hazard {
+    background-color: $color-hazard;
+    color: white;
+}
+.alert_warning {
+    background-color: $color-warning;
+    color: white;
+}
+.alert_info {
+    background-color: $color-primary;
+    color: white;
+}
+.alert__dismiss {
+    position: relative;
+    padding: $modal-padding / 4;
+    color: inherit;
+    right: -12px;
+    text-decoration: none;
+    cursor: pointer;
+    .mdi {
+        display: block;
+    }
+}
+.alert__dismiss:hover {
+    background-color: $color-white-24p;
+}
+.alert_modal {
+    margin: -$modal-padding;
+    margin-bottom: $modal-padding;
+    padding-left: $modal-padding;
+    padding-right: $modal-padding;
+}
