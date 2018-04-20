@@ -48,6 +48,11 @@ export default {
         toggle (event) {
             let target = event.target, openedMenu;
 
+            /**
+             * @todo
+             * Нужно сделать отдельную область выпадающего меню, в которое при клике на иконку верхнего меню
+             * будет подгружаться дочернее меню.
+             */
             while (target !== document) {
                 if (target.classList.contains('menu__link')) {
                     // Set active state
@@ -58,7 +63,7 @@ export default {
                     openedMenu.classList.toggle('visible');
 
                     // Set sidebar class
-                    document.getElementById('sidebar').classList.toggle('visible');
+                    document.getElementById('sidebar').classList.toggle('opened');
                     break;
                 }
 
@@ -70,9 +75,11 @@ export default {
                 if (target.classList.contains('menu')) {
                     let visibleMenus = target.querySelectorAll('.menu.visible');
                     Array.prototype.map.call(visibleMenus, element => {
-                        if (element !== openedMenu) {
-                            element.classList.remove('visible');
-                        }
+                        // if (element !== openedMenu) {
+                        element.classList.remove('visible');
+                        // }
+
+
                     });
 
                     break;

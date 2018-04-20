@@ -6,17 +6,17 @@
     top: 0;
     left: 0;
     z-index: 50;
-    transition: width 0.3s ease-out 0s;
+    //transition: width 0.3s ease-out 0s;
     background-color: $color-dark-gray;
     overflow: hidden;
     padding: 64px 0 24px 0;
 }
-.sidebar.visible {
-    width: $sidebar-full-width;
-}
+//.sidebar.visible {
+//    width: $sidebar-full-width;
+//}
 .sidebar ~ .content {
     margin-left: $sidebar-initial-width;
 }
-.sidebar.visible ~ .content {
+.sidebar.opened ~ .content {
     margin-left: $sidebar-full-width;
 }

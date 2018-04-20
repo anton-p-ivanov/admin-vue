@@ -1,4 +1,7 @@
 @import "../../../assets/scss/variables";
+
+$icon-bar-width: 64px;
+
 .menu,
 .menu_group,
 .menu__item,
@@ -27,17 +30,18 @@
     position: fixed;
     height: 100%;
     background-color: $color-lightest-gray;
-    top: 64px;
-    left: -336px;
-    width: 336px;
-    transition: left 0.3s ease-out 0s;
+    top: $icon-bar-width;
+    left: $icon-bar-width;
+    width: 0;
+    transition: width .3s ease-out 0s;
     &.visible {
-        left: 64px;
+        width: $sidebar-full-width - $icon-bar-width;
     }
     .menu__link {
         color: $color-medium-gray;
         margin: 0;
         padding: 6px 24px;
+        width: $sidebar-full-width - $icon-bar-width;
         &:hover {
             color: white;
             background-color: $color-primary;
