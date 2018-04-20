@@ -20,11 +20,3 @@
 .sidebar.visible ~ .content {
     margin-left: $sidebar-full-width;
 }
-@media only screen and (min-width: 1200px) {
-    .sidebar {
-        width: $sidebar-full-width;
-    }
-    .sidebar ~ .content {
-        margin-left: $sidebar-full-width;
-    }
-}
