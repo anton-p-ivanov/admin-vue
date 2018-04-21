@@ -40,7 +40,19 @@ export default {
             }
         }
 
-        this.$_date = { date: null, hours: '00', minutes: '00'};
+        this.$_date = {date: null, hours: '00', minutes: '00'};
+
+        if (this.value && typeof this.value === 'string') {
+            let date = new Date(this.value);
+
+            if (!isNaN(date.getDate())) {
+                this.$_date = {
+                    date: [date.getFullYear(), ('00' + (date.getMonth() + 1)).slice(-2), ("00" + date.getDate()).slice(-2)].join('-'),
+                    hours: date.getHours(),
+                    minutes: date.getMinutes()
+                };
+            }
+        }
     },
     mounted () {
         // Listening for click events
