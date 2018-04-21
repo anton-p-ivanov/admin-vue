@@ -4,7 +4,13 @@ export default {
     props: {
         label: null,
         items: {
-            type: Array
+            type: Array,
+            default: () => []
+        }
+    },
+    data () {
+        return {
+            previousTarget: null
         }
     },
     created () {
@@ -46,41 +52,31 @@ export default {
         },
 
         toggle (event) {
-            let target = event.target, openedMenu;
+            let target = event.target,
+                panel = document.getElementById('app-submenu'),
+                sidebar = document.getElementById('sidebar');
 
-            /**
-             * @todo
-             * Нужно сделать отдельную область выпадающего меню, в которое при клике на иконку верхнего меню
-             * будет подгружаться дочернее меню.
-             */
             while (target !== document) {
                 if (target.classList.contains('menu__link')) {
-                    // Set active state
-                    target.classList.toggle('active');
-
-                    // Toggle selected sub-menu
-                    openedMenu = target.nextElementSibling;
-                    openedMenu.classList.toggle('visible');
-
-                    // Set sidebar class
-                    document.getElementById('sidebar').classList.toggle('opened');
-                    break;
-                }
-
-                target = target.parentNode;
-            }
-
-            // Hide all other sub-menus
-            while (target !== document) {
-                if (target.classList.contains('menu')) {
-                    let visibleMenus = target.querySelectorAll('.menu.visible');
-                    Array.prototype.map.call(visibleMenus, element => {
-                        // if (element !== openedMenu) {
-                        element.classList.remove('visible');
-                        // }
-
-
+                    // Toggle all active triggers
+                    Array.prototype.map.call(this.$el.querySelectorAll('.menu__link.active'), element => {
+                        element.classList.toggle('active', false);
                     });
+
+                    if (target === this.previousTarget) {
+                        this.previousTarget = null;
+                        panel.classList.toggle('visible', false);
+                        panel.innerHTML = '';
+                        sidebar.classList.toggle('opened', false);
+                    }
+                    else {
+                        this.previousTarget = target;
+                        target.classList.toggle('active', true);
+                        panel.classList.toggle('visible', true);
+                        panel.innerHTML = target.nextElementSibling.innerHTML;
+
+                        sidebar.classList.toggle('opened', true);
+                    }
 
                     break;
                 }

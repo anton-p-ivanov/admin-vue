@@ -42,7 +42,8 @@
         </component>
         <div class="main">
             <component is="app-sidebar">
-                <component is="menu-list" :items="sidebar"></component>
+                <component id="app-menu" is="menu-list" :items="sidebar"></component>
+                <component id="app-submenu" is="menu-list" :class="{menu_group:true}"></component>
             </component>
             <template v-if="$route.matched.length">
                 <router-view class="content"></router-view>
