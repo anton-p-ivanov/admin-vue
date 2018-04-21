@@ -18,6 +18,7 @@ export default {
                     'WEEKDAYS': ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
                     'TODAY': 'Today',
                     'CLOSE': 'Close',
+                    'CLEAR': 'Clear',
                     'CHOOSE_DATE': 'Choose date',
                     'CHOOSE_TIME': 'Choose time'
                 },
@@ -25,6 +26,7 @@ export default {
                     'WEEKDAYS': ['В', 'П', 'В', 'С', 'Ч', 'П', 'С'],
                     'TODAY': 'Сегодня',
                     'CLOSE': 'Закрыть',
+                    'CLEAR': 'Очистить',
                     'CHOOSE_DATE': 'Выберите дату',
                     'CHOOSE_TIME': 'Выберите время'
                 }
@@ -316,6 +318,14 @@ export default {
         $_clickHandler_Today () {
             this.$_currentDate = new Date();
             this.type = DATETIME_PICKER_DATETIME;
+        },
+
+        $_clickHandler_Clear () {
+            // Send selected date & time to parent component
+            this.$emit('change', null);
+
+            // Hide DateTimePicker
+            this.hide();
         },
 
         $_clickHandler_Date (event) {

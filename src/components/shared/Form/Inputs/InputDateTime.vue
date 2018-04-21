@@ -43,6 +43,10 @@
             formattedValue () {
                 let value = this.value;
 
+                if (!value) {
+                    return null;
+                }
+
                 if (this.pickerType === 'time') {
                     value = moment(new Date()).format('YYYY-MM-DD') + ' ' + value;
                 }
