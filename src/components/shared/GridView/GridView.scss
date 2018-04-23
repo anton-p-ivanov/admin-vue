@@ -32,6 +32,7 @@
 .grid-view__table .mdi,
 .grid-view__table .mdi::before {
     display: block;
+    margin: 0 auto;
 }
 /* region Fixed columns table */
 .grid-view__table_fixed {
