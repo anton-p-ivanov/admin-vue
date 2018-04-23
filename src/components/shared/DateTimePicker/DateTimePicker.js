@@ -6,12 +6,16 @@ const DATETIME_PICKER_DATETIME = 'datetime';
 // noinspection JSUnusedGlobalSymbols
 export default {
     name: 'DateTimePicker',
-    props: ['value'],
+    props: {
+        value: {
+            type: [Date, String],
+            default: () => { new Date() }
+        }
+    },
     data () {
         return {
             type: DATETIME_PICKER_DATETIME,
             locale: document.querySelector('html').getAttribute('lang') || 'en-US',
-            date: new Date(),
             format: 'DD.MM.YYYY HH:mm',
             i18n: {
                 'en-US': {
@@ -41,20 +45,6 @@ export default {
                 'time': this.format[1]
             }
         }
-
-        this.$_date = {date: null, hours: '00', minutes: '00'};
-
-        if (this.value && typeof this.value === 'string') {
-            let date = new Date(this.value);
-
-            if (!isNaN(date.getDate())) {
-                this.$_date = {
-                    date: [date.getFullYear(), ('00' + (date.getMonth() + 1)).slice(-2), ("00" + date.getDate()).slice(-2)].join('-'),
-                    hours: date.getHours(),
-                    minutes: date.getMinutes()
-                };
-            }
-        }
     },
     mounted () {
         // Listening for click events
@@ -68,9 +58,18 @@ export default {
     },
     methods: {
         show () {
-            this.$_currentDate = this.date ? new Date(this.date) : new Date();
+            this.$_currentDate = this.value;
+            if (typeof this.$_currentDate === 'string') {
+                if (this.type === DATETIME_PICKER_TIME) {
+                    this.$_currentDate = new Date();
+                }
+                else {
+                    this.$_currentDate = new Date(this.$_currentDate);
+                }
+            }
+
             this.$_selectedDate = this.$_currentDate;
-            this.$_initialType = this.type;
+            // this.$_initialType = this.type;
 
             this.renderPicker();
 
@@ -185,11 +184,10 @@ export default {
                     && year === this.$_currentDate.getFullYear()),
                     selected = (i === this.$_selectedDate.getDate()
                         && month === this.$_selectedDate.getMonth()
-                        && year === this.$_selectedDate.getFullYear()),
-                    strDate = [year, ('00' + (month + 1)).slice(-2), ("00" + i).slice(-2)].join('-');
+                        && year === this.$_selectedDate.getFullYear());
 
                 days.push({
-                    'text': `<a href="#" class="${selected ? 'selected' : null}" data-picker="Date" data-date="${strDate}">${i}</a>`,
+                    'text': `<a href="#" class="${selected ? 'selected' : null}" data-picker="Date" data-date="${i}">${i}</a>`,
                     'class': today ? 'today' : null,
                 });
             }
@@ -331,7 +329,9 @@ export default {
         $_clickHandler_Date (event) {
             let target = event.target;
 
-            this.$_date.date = target.dataset.date;
+            this.$_selectedDate.setDate(parseInt(target.dataset.date));
+            this.$_selectedDate.setMonth(this.$_month);
+            this.$_selectedDate.setFullYear(this.$_year);
 
             if (this.type === DATETIME_PICKER_DATE) {
                 this.$_clickHandler_Close();
@@ -345,7 +345,7 @@ export default {
             let target = event.target;
 
             target.classList.toggle('selected', true);
-            this.$_date.hours = target.dataset.hours;
+            this.$_selectedDate.setHours(parseInt(target.dataset.hours));
 
             while (target !== document) {
                 if (target.tagName === 'UL') {
@@ -362,7 +362,7 @@ export default {
         },
 
         $_clickHandler_Minutes (event) {
-            this.$_date.minutes = event.target.dataset.minutes;
+            this.$_selectedDate.setMinutes(parseInt(event.target.dataset.minutes));
             this.$_clickHandler_Close();
         },
 
@@ -371,14 +371,8 @@ export default {
         },
 
         $_clickHandler_Close () {
-            let value = this.$_date.hours + ':' + this.$_date.minutes;
-
-            if (this.$_initialType !== DATETIME_PICKER_TIME) {
-                value = this.$_date.date + ' ' + value;
-            }
-
             // Send selected date & time to parent component
-            this.$emit('change', value);
+            this.$emit('change', this.$_selectedDate);
 
             // Hide DateTimePicker
             this.hide();

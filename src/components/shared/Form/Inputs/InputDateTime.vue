@@ -22,7 +22,10 @@
         name: 'InputDateTime',
         props: {
             attribute: {},
-            value: String
+            value: {
+                type: [Date, String],
+                default: () => { new Date }
+            }
         },
         data () {
             return {
@@ -66,7 +69,13 @@
                 picker.show();
             },
             updateValue (value) {
-                this.$emit('change', value, this.attribute.model);
+                let outputFormat = 'YYYY-MM-DD HH:mm:ss';
+
+                if (this.$refs.dtpicker.type === 'time') {
+                    outputFormat = 'HH:mm:ss'
+                }
+
+                this.$emit('change', moment(value).format(outputFormat), this.attribute.model);
             }
         }
     }
