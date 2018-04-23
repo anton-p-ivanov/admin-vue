@@ -1,0 +1,68 @@
+@import "../../../assets/scss/variables";
+.grid-view {
+    position: relative;
+}
+.grid-view__table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-weight: 400;
+}
+.grid-view__table th,
+.grid-view__table td {
+    font-weight: 400;
+    padding: 12px 20px;
+    line-height: 24px;
+    border-bottom: solid 1px $color-light-gray;
+}
+.grid-view__table th {
+    text-align: inherit;
+    color: $color-gray;
+}
+.grid-view__table tr:hover td {
+    background-color: $color-lightest-gray;
+}
+.grid-view__table th.text_center {
+    text-align: center;
+}
+.grid-view__table th.text_right {
+    text-align: right;
+}
+.grid-view__table input,
+.grid-view__table .mdi,
+.grid-view__table .mdi::before {
+    display: block;
+}
+/* region Fixed columns table */
+.grid-view__table_fixed {
+    table-layout: fixed;
+}
+.grid-view__table_fixed thead th,
+.grid-view__table_fixed tbody td  {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/* endregion */
+/* region Toolbar */
+.grid-view .toolbar_grid {
+    .toolbar__group_title {
+        color: $color-dark-gray;
+    }
+    .toolbar__item > a,
+    .toolbar__item > span {
+        color: $color-dark-gray;
+    }
+    .toolbar__item_active,
+    .toolbar__item > a:hover {
+        background-color: $color-black-06p;
+    }
+    .toolbar__item_disabled > a,
+    .toolbar__item_disabled > span {
+        color: $color-gray;
+    }
+    .toolbar__item_disabled > a:hover {
+        background-color: transparent;
+    }
+}
+/* endregion */
