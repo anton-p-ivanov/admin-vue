@@ -35,7 +35,7 @@
                 </div>
                 <div class="toolbar__item">
                     <a href="#">
-                        <i class="mdi mdi-circle-icon"></i>
+                        <i class="mdi mdi-help-circle"></i>
                     </a>
                 </div>
             </div>
