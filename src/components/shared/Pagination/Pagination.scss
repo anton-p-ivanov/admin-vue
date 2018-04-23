@@ -1,0 +1,32 @@
+@import "../../../assets/scss/variables";
+
+.pagination {
+    font-size: $font-small;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    height: 64px;
+    line-height: 24px;
+    padding: 20px 0;
+    color: $color-gray;
+}
+.pagination__nav {
+    margin-left: 24px;
+    display: flex;
+}
+.pagination__link {
+    height: 24px;
+    width: 24px;
+    display: block;
+    color: $color-dark-gray;
+}
+.pagination__link:hover {
+    color: $color-primary;
+}
+.pagination__link.disabled,
+.pagination__link.disabled:hover {
+    color: $color-light-gray;
+}
+.pagination__link .mdi {
+    display: block;
+}
