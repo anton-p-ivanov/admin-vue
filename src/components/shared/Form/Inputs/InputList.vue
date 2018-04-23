@@ -72,7 +72,6 @@
             position: absolute;
             top: 2px;
             margin-left: -32px;
-            color: $color-gray;
         }
     }
 </style>
