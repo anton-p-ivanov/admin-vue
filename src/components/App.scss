@@ -61,6 +61,12 @@ a {
     transition: margin 0.3s ease-out 0s;
     min-width: 600px;
 }
+.footer {
+    border-top: solid 1px $color-light-gray;
+    padding-top: 12px;
+    font-size: $font-small;
+    color: $color-gray;
+}
 /* region Flex grid */
 .flex {
     margin: 0;

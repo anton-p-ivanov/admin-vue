@@ -20,7 +20,8 @@ export default {
         return {
             isLoggedIn: Auth.loggedIn(),
             toolbar: APP_TOOLBAR,
-            sidebar: APP_SIDEBAR
+            sidebar: APP_SIDEBAR,
+            company: 'Your Company Ltd.'
         }
     },
     created () {

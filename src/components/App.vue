@@ -45,12 +45,17 @@
                 <component id="app-menu" is="menu-list" :items="sidebar"></component>
                 <component id="app-submenu" is="menu-list" :class="{menu_group:true}"></component>
             </component>
-            <template v-if="$route.matched.length">
-                <router-view class="content"></router-view>
-            </template>
-            <template v-else>
-                <p>You are logged {{ loggedIn ? 'in' : 'out' }}</p>
-            </template>
+            <div class="content">
+                <template v-if="$route.matched.length">
+                    <router-view></router-view>
+                </template>
+                <template v-else>
+                    <p>You are logged {{ loggedIn ? 'in' : 'out' }}</p>
+                </template>
+                <div class="footer">
+                    © {{ (new Date()).getFullYear() }}, {{ company }}. All rights reserved.
+                </div>
+            </div>
         </div>
     </div>
 </template>
