@@ -6,21 +6,17 @@ export default {
             type: Object
         }
     },
-    data () {
-        return {
-            currentPage: 1
-        }
-    },
-    created () {
-        this.currentPage = this.schema.page;
-    },
     computed: {
+        currentPage () {
+            return this.schema.page;
+        },
+
         firstOnPage () {
-            return (this.currentPage - 1) * this.schema.size + 1;
+            return (this.schema.page - 1) * this.schema.size + 1;
         },
 
         lastOnPage () {
-            let max = this.currentPage * this.schema.size;
+            let max = this.schema.page * this.schema.size;
             return max > this.schema.total ? this.schema.total : max
         },
 
