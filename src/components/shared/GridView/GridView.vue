@@ -33,11 +33,11 @@
                     :item="item[column.attribute]"/>
                 <component is="action-column"
                     v-if="context && context.length"
-                    :items="context"/>
+                    :items="normalizedContext(item.uuid)"/>
             </tr>
             </tbody>
         </table>
-        <component is="pagination" :schema="{page: 1, size: 20, total: 43}"></component>
+        <component is="pagination" :schema="pagination"></component>
     </div>
 </template>
 
