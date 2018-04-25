@@ -5,9 +5,9 @@
                 <span class="dropdown__divider"></span>
             </template>
             <template v-else>
-                <a class="dropdown__link" :href="item.url" v-bind="item.options" @click.prevent="item.click">
+                <router-link class="dropdown__link" :to="item.url" v-bind="item.options" @click.prevent="item.click">
                     {{ item.label }}
-                </a>
+                </router-link>
             </template>
         </li>
     </ul>
