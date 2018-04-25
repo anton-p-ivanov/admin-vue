@@ -10,8 +10,17 @@ let isFormInitialized = false;
 export default {
     name: 'Form',
     props: {
-        schema: Array,
-        handler: Function
+        schema: {
+            type: Array,
+            default: () => { return [] }
+        },
+        attributes: {
+            type: Object,
+            default: () => { return {} }
+        },
+        handler: {
+            type: Function
+        }
     },
     components: {
         'form-group': Group
@@ -45,6 +54,10 @@ export default {
                 }
                 target = target.parentNode;
             }
+        },
+
+        updateAttribute (value, model) {
+            this.$emit('change', value, model);
         }
     }
 }
