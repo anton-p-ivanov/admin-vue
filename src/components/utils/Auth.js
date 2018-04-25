@@ -1,64 +1,96 @@
 /* globals localStorage */
 import axios from 'axios';
 
+const AUTH_CLIENT_ID = 'a354f75b-0352-42d0-b1a5-168f2cb04a7f';
+const AUTH_CLIENT_SECRET = 'client_secret';
+
 export default {
-  login (email, pass, callback) {
-    if (this.getToken()) {
-      if (callback) {
-        callback(true);
-      }
+    login (email, pass, callback) {
+        if (this.getToken()) {
+            if (callback) {
+                callback(true);
+            }
 
-      this.onChange(true);
+            this.onChange(true);
 
-      return;
-    }
+            return;
+        }
 
-    axios.post(`http://backend.web.host/auth/token`, {})
-      .then(response => { console.log(response) })
-      .catch(errors => { console.log(errors) })
+        console.debug('Sending access token request ...');
 
-    // pretendRequest(email, pass, (res) => {
-      // if (res.authenticated) {
-      //   localStorage.token = res.token;
-      //   if (cb) cb(true);
-      //   this.onChange(true)
-      // } else {
-      //   if (cb) cb(false);
-      //   this.onChange(false)
-      // }
-    // })
-  },
+        axios
+            .post('/auth/token', {
+                'grant_type': 'password',
+                'client_id': AUTH_CLIENT_ID,
+                'client_secret': AUTH_CLIENT_SECRET,
+                'username': email,
+                'password': pass
+            })
+            .then(response => {
+                let success = response.status === 200;
+                if (success) {
+                    console.debug('Access token successfully fetched.');
+                    this.setToken(response.data);
+                }
 
-  setToken (token) {
-    localStorage.token = token;
-  },
+                if (callback) {
+                    callback(success);
+                }
+            })
+            .catch(() => {
+                console.debug('Could not fetch access token.');
 
-  getToken () {
-    return localStorage.token
-  },
+                if (callback) {
+                    callback(false);
+                }
+            })
+    },
 
-  logout (cb) {
-    delete localStorage.token;
-    if (cb) cb();
-    this.onChange(false)
-  },
+    setToken (data) {
+        localStorage.auth = JSON.stringify({
+            access_token: data['access_token'],
+            refresh_token: data['refresh_token'],
+            expired: Math.floor((new Date()).getTime() / 1000 + data['expires_in'])
+        });
+    },
 
-  loggedIn () {
-    return !!localStorage.token
-  },
+    getToken () {
+        if (this.loggedIn()) {
+            return JSON.parse(localStorage.auth).access_token;
+        }
 
-  onChange () {}
-}
+        return null;
+    },
 
-function pretendRequest (email, pass, cb) {
-  setTimeout(() => {
-    if (email === 'joe@example.com' && pass === 'password1') {
-      cb({
-        authenticated: true,
-        token: Math.random().toString(36).substring(7)
-      })
-    } else {
-      cb({ authenticated: false })
-    }
-  }, 0)
+    logout (callback) {
+        axios
+            .delete('/auth/delete')
+            .then(response => {
+                if (response.status === 200) {
+                    console.debug('Access token successfully removed.');
+                }
+            })
+            .catch(() => {
+                console.debug('Could not delete access token.');
+            });
+
+        delete localStorage.auth;
+
+        if (callback) {
+            callback();
+        }
+
+        console.debug('User has been signed out. Access token removed.');
+    },
+
+    loggedIn () {
+        if (localStorage.auth) {
+            let auth = JSON.parse(localStorage.auth),
+                now = Math.floor((new Date()).getTime() / 1000);
+
+            return now < auth.expired;
+        }
+
+        return false;
+    },
 }
