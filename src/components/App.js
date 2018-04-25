@@ -6,6 +6,7 @@ import SideBar from "./layout/SideBar/SideBar";
 
 import {APP_TOOLBAR} from '../mocks/app.toolbar'
 import {APP_SIDEBAR} from '../mocks/app.sidebar'
+import axios from "axios/index";
 
 // noinspection JSUnusedGlobalSymbols
 export default {
@@ -25,9 +26,15 @@ export default {
         }
     },
     created () {
+        axios.defaults.baseURL = 'http://backend.web.host';
+        axios.defaults.headers = {
+            'Authorization': 'Bearer ' + Auth.getToken()
+        };
+
         document.addEventListener('click', this.__clickHandler);
 
         Auth.onChange = isLoggedIn => {
+            // noinspection JSUnusedGlobalSymbols
             this.isLoggedIn = isLoggedIn;
         };
     },
