@@ -50,6 +50,14 @@ a {
     text-decoration: none;
     transition: background 0.15s ease-out, color 0.15s ease-out;
 }
+h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0 0 0 0;
+    padding-bottom: 12px;
+    border-bottom: solid 1px $color-light-gray;
+    letter-spacing: -.03em;
+}
 #app {
     margin-top: 64px;
 }
